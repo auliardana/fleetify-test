@@ -1,0 +1,937 @@
+{
+	"info": {
+		"_postman_id": "8b61b2b9-9d13-45ae-9646-6b43d6c0bd0d",
+		"name": "Fleetify-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23727566"
+	},
+	"item": [
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "List Employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/employee",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"employee"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Employee",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/employee",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 Jan 2025 06:30:23 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "355"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"fa247f6c-8b84-4f23-a8e1-ab9b79fb7b9e\",\n            \"departement_id\": 1,\n            \"name\": \"Roberto\",\n            \"address\": \"Jl. Sana sini blok A no 1\",\n            \"created_at\": \"2025-01-17T06:30:20.217Z\",\n            \"updated_at\": \"2025-01-17T06:30:20.217Z\",\n            \"departement\": {\n                \"id\": 1,\n                \"departement_name\": \"IT Department\",\n                \"max_clock_in_time\": \"2025-01-17T02:30:00Z\",\n                \"max_clock_out_time\": \"2025-01-17T14:00:00Z\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Employee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"departement_id\": 2,\r\n    \"name\": \"andreas\",\r\n    \"address\": \"Jl. Sana sini blok A no 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/employee",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"employee"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "departement_id invalid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"departement_id\": 3,\r\n    \"name\": \"Ardana\",\r\n    \"address\": \"Jl. Sana sini blok A no 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9999/api/v1/employee",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"api",
+										"v1",
+										"employee"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Jan 2025 10:24:23 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"departement_id invalid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update Employee",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"departement_id\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/employee/1f8b58ae-c263-46bf-866c-a355312f3f27",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"employee",
+								"1f8b58ae-c263-46bf-866c-a355312f3f27"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "invalid departement_id",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"departement_id\":4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/employee/\"1f8b58ae-c263-46bf-866c-a355312f3f27\"",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"employee",
+										"\"1f8b58ae-c263-46bf-866c-a355312f3f27\""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Jan 2025 12:38:21 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"departement_id invalid\"\n}"
+						},
+						{
+							"name": "successfull",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"departement_id\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/employee/\"1f8b58ae-c263-46bf-866c-a355312f3f27\"",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"employee",
+										"\"1f8b58ae-c263-46bf-866c-a355312f3f27\""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Jan 2025 12:38:35 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"employee updated successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Employee",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/employee/2416222c-5834-41ce-8e76-528c4cd6c68e",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"employee",
+								"2416222c-5834-41ce-8e76-528c4cd6c68e"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9999/api/v1/employee/2416222c-5834-41ce-8e76-528c4cd6c68e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"api",
+										"v1",
+										"employee",
+										"2416222c-5834-41ce-8e76-528c4cd6c68e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Jan 2025 13:13:22 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"employee deleted successfully\"\n}"
+						},
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/employee/2416222c-5834-41ce-8e76-528c4cd6c689",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"employee",
+										"2416222c-5834-41ce-8e76-528c4cd6c689"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Jan 2025 13:14:29 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"employee not found\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Departement",
+			"item": [
+				{
+					"name": "List Departement",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/departement",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"departement"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/departement",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"departement"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 Jan 2025 06:29:27 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "278"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"departement_name\": \"IT Department\",\n            \"max_clock_in_time\": \"2025-01-17T02:30:00Z\",\n            \"max_clock_out_time\": \"2025-01-17T14:00:00Z\"\n        },\n        {\n            \"id\": 2,\n            \"departement_name\": \"Business Department\",\n            \"max_clock_in_time\": \"2025-01-17T02:30:00Z\",\n            \"max_clock_out_time\": \"2025-01-17T14:00:00Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Departement",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"departement_name\": \"IT Department\",\r\n    \"max_clock_in_time\": \"2025-01-16T08:30:00.000+07:00\",\r\n    \"max_clock_out_time\": \"2025-01-16T21:00:00.000+07:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/departement",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"departement"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "successfull",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"departement_name\": \"IT Department\",\r\n    \"max_clock_in_time\": \"2025-01-01T08:00:00Z\",\r\n    \"max_clock_out_time\": \"2025-01-01T21:00:00Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9999/api/v1/departement",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"api",
+										"v1",
+										"departement"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Jan 2025 08:38:11 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"departement created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update Departement",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"departement_name\": \"IT New Departement\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/departement/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"departement",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"departement_name\": \"IT New Departement\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9999/api/v1/departement/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"api",
+										"v1",
+										"departement",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Jan 2025 11:41:11 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"departement updated successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Departement",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/departement/3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"departement",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9999/api/v1/departement/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"api",
+										"v1",
+										"departement",
+										"5"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Jan 2025 11:53:08 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"departement not found\"\n}"
+						},
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/departement/3",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"departement",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Jan 2025 13:13:56 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"departement deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Attendance",
+			"item": [
+				{
+					"name": "Clock in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employee_id\": \"fa247f6c-8b84-4f23-a8e1-ab9b79fb7b9e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/attendance",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"attendance"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "successfull",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"employee_id\": \"a2fef129-0ce0-442d-a9c3-3a0b71d75941\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/attendance",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"attendance"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Jan 2025 20:21:01 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"clock in success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Clock Out",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/attendance/a2fef129-0ce0-442d-a9c3-3a0b71d75941",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"attendance",
+								"a2fef129-0ce0-442d-a9c3-3a0b71d75941"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Clock Out",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/attendance/a2fef129-0ce0-442d-a9c3-3a0b71d75941",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"attendance",
+										"a2fef129-0ce0-442d-a9c3-3a0b71d75941"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Jan 2025 20:28:58 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"clock out success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "{{BASE_URL}}/attendance/fa247f6c-8b84-4f23-a8e1-ab9b79fb7b9e",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/attendance/fa247f6c-8b84-4f23-a8e1-ab9b79fb7b9e",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"attendance",
+								"fa247f6c-8b84-4f23-a8e1-ab9b79fb7b9e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "attendance history",
+			"item": [
+				{
+					"name": "List Attendance History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/attendance?start_date=2025-01-15&end_date=2025-01-18&departement_id=3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"attendance"
+							],
+							"query": [
+								{
+									"key": "start_date",
+									"value": "2025-01-15"
+								},
+								{
+									"key": "end_date",
+									"value": "2025-01-18"
+								},
+								{
+									"key": "departement_id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/attendance?start_date=2025-01-15&end_date=2025-01-18&departement_id=",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"attendance"
+									],
+									"query": [
+										{
+											"key": "start_date",
+											"value": "2025-01-15"
+										},
+										{
+											"key": "end_date",
+											"value": "2025-01-18"
+										},
+										{
+											"key": "departement_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 Jan 2025 03:05:40 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1319"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"clock_in\": \"2025-01-17T09:49:18+07:00\",\n        \"clock_out\": \"2025-01-17T09:49:23+07:00\",\n        \"date_attendance\": \"2025-01-17T09:49:23+07:00\",\n        \"department_name\": \"Business Department\",\n        \"description\": \"Terlambat\",\n        \"employee_name\": \"Roberto\",\n        \"is_late_clock_in\": true,\n        \"is_late_clock_out\": false\n    },\n    {\n        \"clock_in\": \"2025-01-17T03:21:01+07:00\",\n        \"clock_out\": \"2025-01-17T03:28:59+07:00\",\n        \"date_attendance\": \"2025-01-17T03:28:59+07:00\",\n        \"department_name\": \"Business Department\",\n        \"description\": \"\",\n        \"employee_name\": \"Ardana\",\n        \"is_late_clock_in\": false,\n        \"is_late_clock_out\": false\n    },\n    {\n        \"clock_in\": \"2025-01-17T09:47:29+07:00\",\n        \"clock_out\": \"2025-01-17T09:47:36+07:00\",\n        \"date_attendance\": \"2025-01-17T09:47:37+07:00\",\n        \"department_name\": \"IT Department\",\n        \"description\": \"Terlambat\",\n        \"employee_name\": \"Ardana\",\n        \"is_late_clock_in\": true,\n        \"is_late_clock_out\": false\n    },\n    {\n        \"clock_in\": \"2025-01-17T09:48:38+07:00\",\n        \"clock_out\": \"2025-01-17T09:48:43+07:00\",\n        \"date_attendance\": \"2025-01-17T09:48:43+07:00\",\n        \"department_name\": \"IT Department\",\n        \"description\": \"Terlambat\",\n        \"employee_name\": \"Aulia\",\n        \"is_late_clock_in\": true,\n        \"is_late_clock_out\": false\n    },\n    {\n        \"clock_in\": \"2025-01-17T09:40:01+07:00\",\n        \"clock_out\": \"2025-01-17T09:40:21+07:00\",\n        \"date_attendance\": \"2025-01-17T09:40:21+07:00\",\n        \"department_name\": \"IT Department\",\n        \"description\": \"Terlambat\",\n        \"employee_name\": \"Auliardana\",\n        \"is_late_clock_in\": true,\n        \"is_late_clock_out\": false\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:9999/api/v1",
+			"type": "string"
+		}
+	]
+}
