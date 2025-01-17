@@ -1,0 +1,13 @@
+database:
+  uri: root:password@tcp(mysql:3306)/absensi?charset=utf8mb4&parseTime=True&loc=Local
+  pool:
+    idle: 10
+    maxconnection: 50
+    lifetime: 300
+  test: Hello World
+app:
+  port: 9999
+log:
+  level: 2
+  format: json
+  output: stdout

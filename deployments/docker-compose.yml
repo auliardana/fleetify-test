@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8.0.30
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: absensi  
+    ports:
+      - "3306:3306"                
+    volumes:
+      - mysql-data:/var/lib/mysql 
+    networks:
+      - fleetify-network 
+
+  api:
+    container_name: api-container
+    build: 
+      context: ../
+      dockerfile: ./build/Dockerfile
+    restart: always
+    ports:
+      - "9999:9999"
+    depends_on:
+      - mysql
+    networks:
+      - fleetify-network
+
+volumes:
+  mysql-data:                   
+    driver: local
+
+networks:
+  fleetify-network:
+    driver: bridge
