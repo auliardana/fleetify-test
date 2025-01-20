@@ -9,6 +9,7 @@ import (
 	"github.com/auliardana/fleetify-test/internal/service"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
+	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
@@ -95,7 +96,13 @@ func (h *employeeHandler) UpdateEmployee(c *gin.Context) {
 		return
 	}
 
-	employeeRequest.ID = string(idParam)
+	parsedID, err := uuid.Parse(idParam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid id"})
+		return
+	}
+
+	employeeRequest.ID = parsedID
 
 	err = h.Service.UpdateEmployee(c, employeeRequest)
 	if err != nil {

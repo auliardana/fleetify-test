@@ -1,5 +1,5 @@
 database:
-  uri: root:password@tcp(mysql:3306)/absensi?charset=utf8mb4&parseTime=True&loc=Local
+  uri: root:password@tcp(localhost:3306)/absensi?charset=utf8mb4&parseTime=True&loc=Local
   pool:
     idle: 10
     maxconnection: 50

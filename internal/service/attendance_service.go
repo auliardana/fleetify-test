@@ -33,7 +33,7 @@ func NewAttendanceService(repoAttendance repository.AttendanceRepository, repoAt
 
 func (s *attendanceService) ClockIn(c *gin.Context, req *model.ClockInAttendanceRequest) error {
 	attendance := &entity.Attendance{
-		ID:         uuid.NewString(),
+		ID:         uuid.New(),
 		EmployeeID: req.EmployeeID,
 		ClockIn:    time.Now(),
 		CreatedAt:  time.Now(),
@@ -66,7 +66,7 @@ func (s *attendanceService) ClockOut(c *gin.Context, id string) error {
 	}
 
 	attendanceHistory := &entity.AttendanceHistory{
-		ID:             uuid.NewString(),
+		ID:             uuid.New(),
 		EmployeeID:     attendance.EmployeeID,
 		AttendanceID:   attendance.ID,
 		DateAttendance: time.Now(),

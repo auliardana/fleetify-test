@@ -33,7 +33,7 @@ func NewEmployeeService(repo repository.EmployeeRepository, log *logrus.Logger) 
 
 func (s *employeeService) CreateEmployee(c *gin.Context, req *model.EmployeeRequest) error {
 	employee := &entity.Employee{
-		ID:            uuid.NewString(),
+		ID:            uuid.New(),
 		DepartementID: req.DepartementID,
 		Name:          req.Name,
 		Address:       req.Address,
@@ -81,7 +81,7 @@ func (s *employeeService) UpdateEmployee(c *gin.Context, req *model.EmployeeUpda
 		data.Name = req.Name
 	}
 
-	if req.DepartementID != 0 {
+	if req.DepartementID != uuid.Nil {
 		data.DepartementID = req.DepartementID
 	}
 

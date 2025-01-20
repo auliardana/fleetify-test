@@ -11,8 +11,8 @@ services:
       - "3306:3306"                
     volumes:
       - mysql-data:/var/lib/mysql 
-    networks:
-      - fleetify-network 
+    # networks:
+    #   - fleetify-network 
 
   api:
     container_name: api-container
@@ -24,13 +24,19 @@ services:
       - "9999:9999"
     depends_on:
       - mysql
-    networks:
-      - fleetify-network
+    # networks:
+    #   - fleetify-network
+    
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
 
 volumes:
   mysql-data:                   
     driver: local
 
-networks:
-  fleetify-network:
-    driver: bridge
+# networks:
+#   fleetify-network:
+#     driver: bridge

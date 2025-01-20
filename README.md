@@ -1,31 +1,34 @@
-# Attendance API
+# Fleetify Test
 
-This application is an attendance and employee management system built using Go, Gin, and MySQL. The API allows users to manage employee data, departments, and attendance history.
+## Description
+This project is an attendance management application using MySQL, equipped with database migration and a Go-based backend server.
 
-## Prerequisites
-- [Docker](https://www.docker.com/get-started)
-- [Docker Compose](https://docs.docker.com/compose/install/)
+## Steps to Run the Project
 
-## Running the Application
+1. Clone the Repository
+    First, clone this repository to your local machine by running the following command:
+    ```bash
+    git clone https://github.com/auliardana/fleetify-test.git .
 
-To run the application using Docker and Docker Compose, follow these steps:
-
-1. **Clone the Repository**
-
-   First, clone the repository to your local directory:
-
-   ```bash
-   git clone https://github.com/auliardana/fleetify-test.git
-   cd fleetify-test/deployments
-   ```
-
-2. Run docker compose
-
-   then, run docker compose:
+2. how to run
+   Run the following commands to set up and start the project:
 
    ```bash
-   docker-compose up -d
+   make mysql
    ```
+   
+   ```bash
+   make createdb
+   ```
+
+   ```bash
+   make migrateup
+   ```
+
+   ```bash
+   make server
+   ```
+
 3. Access the API on http://localhost:9999
 
     import **Fleetify-test.postman_collection.json** in api folder to postman
@@ -61,4 +64,4 @@ To run the application using Docker and Docker Compose, follow these steps:
         level: 2
         format: json
         output: stdout
-  ```
+    ```

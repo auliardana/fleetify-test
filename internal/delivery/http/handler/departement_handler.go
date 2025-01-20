@@ -9,6 +9,7 @@ import (
 	"github.com/auliardana/fleetify-test/internal/service"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
+	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
@@ -78,11 +79,13 @@ func (h *departementHandler) UpdateDepartement(c *gin.Context) {
 		return
 	}
 
-	departementRequest.ID, err = strconv.Atoi(idParam)
+	parsedID, err := uuid.Parse(idParam)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "id must be a number"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid id"})
 		return
 	}
+
+	departementRequest.ID = parsedID
 
 	err = h.Service.UpdateDepartement(c, departementRequest)
 	if err != nil {

@@ -5,6 +5,7 @@ import (
 
 	"github.com/auliardana/fleetify-test/internal/entity"
 	"github.com/auliardana/fleetify-test/internal/model"
+	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
@@ -15,7 +16,7 @@ type AttendanceHistoryRepository interface {
 	Update(ctx context.Context, entity *entity.AttendanceHistory) error
 	Delete(ctx context.Context, id any) error
 
-	GetMaxClockTimeByEmployeeID(employeeID string) (*model.MaxClockTime, error)
+	GetMaxClockTimeByEmployeeID(employeeID uuid.UUID) (*model.MaxClockTime, error)
 	GetFilteredAttendanceHistories(ctx context.Context, filters *model.AttendanceHistoryFilter) ([]entity.AttendanceHistory, error)
 }
 
@@ -32,7 +33,7 @@ func NewAttendanceHistoryRepository(log *logrus.Logger, db *gorm.DB) AttendanceH
 	}
 }
 
-func (r *attendanceHistoryRepository) GetMaxClockTimeByEmployeeID(employeeID string) (*model.MaxClockTime, error) {
+func (r *attendanceHistoryRepository) GetMaxClockTimeByEmployeeID(employeeID uuid.UUID) (*model.MaxClockTime, error) {
 	var result model.MaxClockTime
 
 	if err := r.DB.Table("employees").

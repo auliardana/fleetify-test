@@ -3,8 +3,6 @@ package config
 import (
 	"fmt"
 	"time"
-
-	"github.com/auliardana/fleetify-test/internal/entity"
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -34,12 +32,12 @@ func NewDatabase(viper *viper.Viper, log *logrus.Logger) *gorm.DB {
 	conn.SetMaxOpenConns(maxConnection)
 	conn.SetConnMaxLifetime(time.Second * time.Duration(maxLifeTimeConnection))
 
-	err = db.AutoMigrate(
-		&entity.Employee{},
-		&entity.Departement{},
-		&entity.AttendanceHistory{},
-		&entity.Attendance{},
-	)
+	// err = db.AutoMigrate(
+	// 	&entity.Employee{},
+	// 	&entity.Departement{},
+	// 	&entity.AttendanceHistory{},
+	// 	&entity.Attendance{},
+	// )
 	if err != nil {
 		log.Fatalf("failed to migrate database: %v", err)
 		return nil
@@ -50,3 +48,5 @@ func NewDatabase(viper *viper.Viper, log *logrus.Logger) *gorm.DB {
 	return db
 
 }
+
+
