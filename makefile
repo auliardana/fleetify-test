@@ -24,5 +24,8 @@ mock:
 
 test:
 	go test -v -cover ./...
+
+service test:
+	go test ./test/service/... -coverpkg=./internal/service/... -coverprofile=coverage.out
 	
 .PHONY: createdb dropdb migratefile migrateup migratedown server mysql test mock

@@ -11,7 +11,6 @@ import (
 type DepartementService interface {
 	CreateDepartement(c *gin.Context, req *model.DepartementRequest) error
 	ListDepartement(c *gin.Context) ([]entity.Departement, error)
-	// GetDepartementByID(c *gin.Context, req string) (*entity.Departement, error)
 	UpdateDepartement(c *gin.Context, req *model.DepartementUpdateRequest) error
 	DeleteDepartement(c *gin.Context, id int) error
 }
@@ -55,10 +54,6 @@ func (s *departementService) ListDepartement(c *gin.Context) ([]entity.Departeme
 	return departements, nil
 
 }
-
-// func (s *departementService) GetDepartementByID(c *gin.Context, id string) (*entity.Departement, error) {
-
-// }
 
 func (s *departementService) UpdateDepartement(c *gin.Context, req *model.DepartementUpdateRequest) error {
 	//find departement by id
