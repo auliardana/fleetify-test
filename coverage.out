@@ -24,7 +24,7 @@ github.com/auliardana/fleetify-test/internal/service/attendance_service.go:112.1
 github.com/auliardana/fleetify-test/internal/service/attendance_service.go:117.2,117.12 1 0
 github.com/auliardana/fleetify-test/internal/service/departement_service.go:23.106,28.2 1 1
 github.com/auliardana/fleetify-test/internal/service/departement_service.go:30.101,39.16 3 1
-github.com/auliardana/fleetify-test/internal/service/departement_service.go:39.16,42.3 2 0
+github.com/auliardana/fleetify-test/internal/service/departement_service.go:39.16,42.3 2 1
 github.com/auliardana/fleetify-test/internal/service/departement_service.go:44.2,44.12 1 1
 github.com/auliardana/fleetify-test/internal/service/departement_service.go:48.92,50.16 2 1
 github.com/auliardana/fleetify-test/internal/service/departement_service.go:50.16,53.3 2 1

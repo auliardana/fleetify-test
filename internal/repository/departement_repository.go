@@ -13,9 +13,7 @@ type DepartementRepository interface {
 	FindById(ctx context.Context, id any) (*entity.Departement, error)
 	Update(ctx context.Context, entity *entity.Departement) error
 	Delete(ctx context.Context, id any) error
-	// Find(ctx context.Context, id int) error
-
-	// GetAll retrieves all records from the database.
+	
 	GetAll(ctx context.Context) ([]entity.Departement, error)
 }
 
