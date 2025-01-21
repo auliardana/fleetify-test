@@ -1,17 +1,21 @@
 package model
 
-import "time"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type AttendanceHistoryFilter struct {
 	StartDate      time.Time `json:"start_date"`
 	EndDate        time.Time `json:"end_date"`
-	DepartementID  string    `json:"departement_id"`
+	DepartementID  uuid.UUID `json:"departement_id"`
 	AttendanceType int       `json:"attendance_type"`
 }
 
 type AttendanceHistoryResponse struct {
-	ID              string    `json:"id"`
-	EmployeeID      string    `json:"employee_id"`
+	ID              uuid.UUID `json:"id"`
+	EmployeeID      uuid.UUID `json:"employee_id"`
 	EmployeeName    string    `json:"employee_name"`
 	Departement     string    `json:"departement"`
 	DateAttendance  time.Time `json:"date_attendance"`

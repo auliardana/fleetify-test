@@ -8,6 +8,7 @@ import (
 	"github.com/auliardana/fleetify-test/internal/utils"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
+	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 )
 
@@ -46,7 +47,14 @@ func (h *attendanceHistoryHandler) ListAttendanceHistory(c *gin.Context) {
 
 	queries.StartDate = startDate
 	queries.EndDate = endDate
-	queries.DepartementID = departementIDStr
+	departementID, err := uuid.Parse(departementIDStr)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	// Assign UUID ke DepartementID
+	queries.DepartementID = departementID
 
 	attendanceHistories, err := h.Service.ListAttendanceHistory(c, queries)
 	if err != nil {

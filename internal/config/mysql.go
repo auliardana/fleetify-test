@@ -32,12 +32,6 @@ func NewDatabase(viper *viper.Viper, log *logrus.Logger) *gorm.DB {
 	conn.SetMaxOpenConns(maxConnection)
 	conn.SetConnMaxLifetime(time.Second * time.Duration(maxLifeTimeConnection))
 
-	// err = db.AutoMigrate(
-	// 	&entity.Employee{},
-	// 	&entity.Departement{},
-	// 	&entity.AttendanceHistory{},
-	// 	&entity.Attendance{},
-	// )
 	if err != nil {
 		log.Fatalf("failed to migrate database: %v", err)
 		return nil

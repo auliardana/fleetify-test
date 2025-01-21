@@ -4,7 +4,8 @@ database:
     idle: 10
     maxconnection: 50
     lifetime: 300
-  test: Hello World
+test:
+  hello: world
 app:
   port: 9999
 log:

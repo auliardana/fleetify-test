@@ -12,10 +12,6 @@ import (
 
 type AttendanceHistoryRepository interface {
 	Create(ctx context.Context, entity *entity.AttendanceHistory) error
-	FindById(ctx context.Context, id any) (*entity.AttendanceHistory, error)
-	Update(ctx context.Context, entity *entity.AttendanceHistory) error
-	Delete(ctx context.Context, id any) error
-
 	GetMaxClockTimeByEmployeeID(employeeID uuid.UUID) (*model.MaxClockTime, error)
 	GetFilteredAttendanceHistories(ctx context.Context, filters *model.AttendanceHistoryFilter) ([]entity.AttendanceHistory, error)
 }
@@ -59,7 +55,7 @@ func (r *attendanceHistoryRepository) GetFilteredAttendanceHistories(ctx context
 		Joins("JOIN employees ON employees.id = attendances.employee_id").
 		Where("attendance_histories.date_attendance BETWEEN ? AND ?", filters.StartDate, filters.EndDate)
 
-	if filters.DepartementID != "" {
+	if filters.DepartementID != uuid.Nil {
 		query = query.Where("employees.departement_id = ?", filters.DepartementID)
 	}
 

@@ -14,6 +14,8 @@ type EmployeeRepository interface {
 	Update(ctx context.Context, entity *entity.Employee) error
 	Delete(ctx context.Context, id any) error
 
+
+
 	// GetAll retrieves all records from the database.
 	GetAll(ctx context.Context) ([]entity.Employee, error)
 }

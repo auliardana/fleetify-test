@@ -19,4 +19,10 @@ migratedown:
 server:
 	go run ./cmd/main.go
 
-.PHONY: createdb dropdb migratefile migrateup migratedown server mysql
+mock:
+	mockgen -package mock -destination test/mock/mock_name.go github.com/auliardana/fleetify-test/internal/repository "nama_interface"
+
+test:
+	go test -v -cover ./...
+	
+.PHONY: createdb dropdb migratefile migrateup migratedown server mysql test mock
