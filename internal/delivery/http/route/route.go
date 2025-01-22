@@ -13,8 +13,6 @@ type ConfigRoute struct {
 	AttendanceHistoryHandler handler.AttendanceHistoryHandler
 }
 
-// , attendanceHandler handler.AttendanceHandler, attendanceHistoryHandler handler.AttendanceHistoryHandler
-
 func NewRoute(employeeHandler handler.EmployeeHandler, departementHandler handler.DepartementHandler, attendanceHandler handler.AttendanceHandler, attendanceHistoryHandler handler.AttendanceHistoryHandler) *ConfigRoute {
 	return &ConfigRoute{
 		EmployeeHandler:          employeeHandler,

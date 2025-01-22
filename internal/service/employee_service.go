@@ -14,9 +14,8 @@ import (
 type EmployeeService interface {
 	CreateEmployee(c *gin.Context, req *model.EmployeeRequest) error
 	ListEmployee(c *gin.Context) ([]entity.Employee, error)
-	// GetEmployeeByID(c *gin.Context, id string) (*entity.Employee, error)
 	UpdateEmployee(c *gin.Context, req *model.EmployeeUpdateRequest) error
-	DeleteEmployee(c *gin.Context, id string) error
+	DeleteEmployee(c *gin.Context, id uuid.UUID) error
 }
 
 type employeeService struct {
@@ -61,10 +60,6 @@ func (s *employeeService) ListEmployee(c *gin.Context) ([]entity.Employee, error
 
 }
 
-// func (s *employeeService) GetEmployeeByID(c *gin.Context, id string) (*entity.Employee, error) {
-
-// }
-
 func (s *employeeService) UpdateEmployee(c *gin.Context, req *model.EmployeeUpdateRequest) error {
 	//find departement by id
 	data, err := s.Repo.FindById(c, req.ID)
@@ -95,8 +90,7 @@ func (s *employeeService) UpdateEmployee(c *gin.Context, req *model.EmployeeUpda
 
 }
 
-func (s *employeeService) DeleteEmployee(c *gin.Context, id string) error {
-	// strID := fmt.Sprintf("%v", id)
+func (s *employeeService) DeleteEmployee(c *gin.Context, id uuid.UUID) error {
 	err := s.Repo.Delete(c, id)
 	if err != nil {
 		s.Log.Warn("Failed to delete employee: ", err)

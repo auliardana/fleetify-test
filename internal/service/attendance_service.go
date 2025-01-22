@@ -80,7 +80,6 @@ func (s *attendanceService) ClockOut(c *gin.Context, id string) error {
 		return err
 	}
 
-	// Validasi maxClockTime
 	if maxClockTime == nil {
 		s.Log.Warn("MaxClockTime is null for employee ID: ", attendance.EmployeeID)
 		return fmt.Errorf("max clock time not found")
@@ -93,16 +92,11 @@ func (s *attendanceService) ClockOut(c *gin.Context, id string) error {
 	default:
 		s.Log.Warn("Unrecognized attendance type for employee ID: ", attendance.EmployeeID)
 		return fmt.Errorf("unrecognized attendance type")
-	// Hadir tepat waktu
 	case clockIn.Before(maxClockTime.MaxClockInTime) && clockOut.Before(maxClockTime.MaxClockOutTime):
 		attendanceHistory.AttendanceType = 1
 		attendanceHistory.Description = "Tepat Waktu"
 
-	// // Hadir dengan pulang cepat (ClockOut lebih awal dari batas waktu - 2 jam)
-	// case clockIn.Before(maxClockTime.MaxClockInTime) && clockOut.Before(maxClockTime.MaxClockOutTime.Add(-2*time.Hour)):
-	// 	attendanceHistory.AttendanceType = 2
 
-	// Telat hadir (ClockIn lebih dari MaxClockInTime)
 	case clockIn.After(maxClockTime.MaxClockInTime):
 		attendanceHistory.AttendanceType = 2
 		attendanceHistory.Description = "Terlambat"

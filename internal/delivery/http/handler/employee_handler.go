@@ -126,7 +126,13 @@ func (h *employeeHandler) DeleteEmployee(c *gin.Context) {
 		return
 	}
 
-	err := h.Service.DeleteEmployee(c, idParam)
+	parsedID, err := uuid.Parse(idParam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid id"})
+		return
+	}
+
+	err = h.Service.DeleteEmployee(c, parsedID)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			c.JSON(http.StatusNotFound, gin.H{"error": "employee not found"})

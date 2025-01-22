@@ -5,6 +5,7 @@ import (
 	"github.com/auliardana/fleetify-test/internal/model"
 	"github.com/auliardana/fleetify-test/internal/repository"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 )
 
@@ -12,7 +13,7 @@ type DepartementService interface {
 	CreateDepartement(c *gin.Context, req *model.DepartementRequest) error
 	ListDepartement(c *gin.Context) ([]entity.Departement, error)
 	UpdateDepartement(c *gin.Context, req *model.DepartementUpdateRequest) error
-	DeleteDepartement(c *gin.Context, id int) error
+	DeleteDepartement(c *gin.Context, id uuid.UUID) error
 }
 
 type departementService struct {
@@ -57,7 +58,7 @@ func (s *departementService) ListDepartement(c *gin.Context) ([]entity.Departeme
 
 func (s *departementService) UpdateDepartement(c *gin.Context, req *model.DepartementUpdateRequest) error {
 	//find departement by id
-	data , err := s.Repo.FindById(c, req.ID)
+	data, err := s.Repo.FindById(c, req.ID)
 	if err != nil {
 		s.Log.Warn("Failed to get departement: ", err)
 		return err
@@ -85,8 +86,8 @@ func (s *departementService) UpdateDepartement(c *gin.Context, req *model.Depart
 
 }
 
-func (s *departementService) DeleteDepartement(c *gin.Context, id int) error {
-	
+func (s *departementService) DeleteDepartement(c *gin.Context, id uuid.UUID) error {
+
 	err := s.Repo.Delete(c, id)
 	if err != nil {
 		s.Log.Warn("Failed to delete departement: ", err)

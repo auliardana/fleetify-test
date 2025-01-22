@@ -3,7 +3,6 @@ package handler
 import (
 	"errors"
 	"net/http"
-	"strconv"
 
 	"github.com/auliardana/fleetify-test/internal/model"
 	"github.com/auliardana/fleetify-test/internal/service"
@@ -103,13 +102,13 @@ func (h *departementHandler) DeleteDepartement(c *gin.Context) {
 		return
 	}
 
-	id, err := strconv.Atoi(idParam)
+	parsedID, err := uuid.Parse(idParam)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "id must be a number"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid id"})
 		return
 	}
 
-	err = h.Service.DeleteDepartement(c, id)
+	err = h.Service.DeleteDepartement(c, parsedID)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			c.JSON(http.StatusNotFound, gin.H{"error": "departement not found"})
